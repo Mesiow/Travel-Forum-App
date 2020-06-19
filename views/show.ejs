@@ -1,0 +1,39 @@
+<%- include("partials/header") %>
+
+<div class="ui main text container">
+	<div class="ui huge header">Blogs</div>
+	<div class="ui top attached segment">
+		<div class="ui divided items">
+			<!--loop each post here-->
+			<div class="item">
+				<div class="image">
+					<!--small img of post-->
+					<img src="https://www.tripsavvy.com/thmb/6jvw4nAA0aT-MV6km_MYbNfMa8U=/2122x1415/filters:fill(auto,1)/GlacierNationalParkMontana-FengWeiPhotography-Getty-5711489a3df78c3fa2b5d2a2.jpg">
+				</div>
+				<div class="content">
+					<!--clickable title of post to see more-->
+					<a class="header" href="#">Title</a>
+					<div class="meta">
+						<!--date post was created-->
+						<span>Sat, June 20, 2020</span>
+					</div>
+					<div class="description">
+						<p>Description...</p> <!--subString only will show the first 100 characters of the post -->
+					</div>
+					<div class="extra">
+						<!--read more button that directs to topic page of post-->
+						<span class="ui animated mini blue button">
+							<span class="inverted visible content"><a style="color:white;"href="#">Read more</a></span>
+							<span class="hidden content">
+								<i style="color:white;"class="right chevron icon"></i>
+							</span>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<%- include("partials/footer") %>

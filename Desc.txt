@@ -1,0 +1,21 @@
+Description: Create a simple travel forum app that lets people make public posts about their 
+impressions and experiences of certain places they've been to.
+
+App type: CRUD forum nodejs app using Mongodb to store user and post information
+
+Features: 1. Let users post about a place they've been to and write their experiences about it.
+          2. Users must be authenticated and logged in to post. Sign Up/Log In functionality
+          3. Users can reply to another user's post but only if they are Logged in.
+          4. Users should be able to update/edit their post.
+          5. Users should also be able to delete their post but only their specific post no one else's post
+
+Packages: 1. Express
+          2. Body-Parser
+          3. Method-Override
+          4. Mongoose
+          5. Passport
+          6. Passport-local
+          7. Passport-local-mongoose
+          8. Connect-flash
+          9. Express-session
+          10. Ejs
