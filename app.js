@@ -41,13 +41,11 @@ user.save((err) => {
 //Routes
 //============
 
-app.get("/", (req, res) => {
-    res.redirect("show"); //redirect to main forum show page
-});
+//Routes for adding, updating and deleting forum posts
+const forumPostRoutes = require("./routes/posts");
 
-app.get("/show", (req, res) => {
-    res.render("show");
-});
+//tell express to use our exported routes
+app.use(forumPostRoutes);
 
 
 
