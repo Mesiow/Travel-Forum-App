@@ -1,10 +1,12 @@
 <%- include("partials/header") %>
+<link href="/stylesheets/show.css" rel="stylesheet" type="text/css">
 
 <div class="ui main text container">
-	<div class="ui huge header">Blogs</div>
+	<div style="padding-top:55px;"class="ui huge header">Topics</div>
 	<div class="ui top attached segment">
 		<div class="ui divided items">
 			<!--loop each post here-->
+			<% for(var i = 0; i < 5; i++){%>
 			<div class="item">
 				<div class="image">
 					<!--small img of post-->
@@ -31,6 +33,7 @@
 					</div>
 				</div>
 			</div>
+			<%}%>
 		</div>
 	</div>
 </div>

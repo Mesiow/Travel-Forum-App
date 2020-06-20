@@ -1,5 +1,5 @@
 Description: Create a simple travel forum app that lets people make public posts about their 
-impressions and experiences of certain places they've been to.
+experiences of certain places they've traveled to.
 
 App type: CRUD forum nodejs app using Mongodb to store user and post information
 
