@@ -1,0 +1,38 @@
+<%- include("partials/header") %>
+<link href="/stylesheets/new.css" rel="stylesheet" type="text/css">
+
+		<div style="margin-top:55px;"class="ui main text container segment">
+			<div class="ui huge header">New Topic</div>
+			<form class="ui form" action="/blogs" method="POST">
+			<!--content[title] puts title inside of an object called content so that instead of getting the value directly with req.body.title,
+		we need to specify the object: req.body.content.title-->
+			<div class="field">
+				<label>Title</label>
+				<input type="text" name="content[title]" placeholder="title">
+			</div>
+			<div class="field">
+				<label>Image</label>
+				<!--<input type="text" name="content[image]" placeholder="image">-->
+				
+				<img id="img-show" class="ui tiny image" src="https://semantic-ui.com/images/wireframe/image.png">
+				<input style="margin-left:-16px;"type="file" id="img" name="content[image]" accept="image/*" onchange="changeImg()"> <!--accept attribute accepts only image files-->
+
+			</div>
+			<div class="field">
+				<label>Content</label>
+				<textarea name="content[body]"></textarea>
+			</div>
+			<input class="ui blue basic button" type="submit">
+			</form>
+		</div>
+
+		<!--Script-->
+		<script type="text/javascript">
+			function changeImg(){
+       		  var file = document.getElementById("img").files[0]; //grab file value from input
+       		  var img_show = document.getElementById("img-show");
+       		  img_show.src = window.URL.createObjectURL(file); //set img src to the file we chose
+       		}
+		</script>
+
+<%- include("partials/footer") %>

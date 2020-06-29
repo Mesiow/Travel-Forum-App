@@ -5,6 +5,9 @@ const router = express.Router(); //add routes to this var
 //include post model
 var Post = require("../models/post");
 
+//Scripts
+var newRouteScript = require("../public/scripts/new")
+
 //Root route, directs to show page
 router.get("/", (req, res) => {
     res.redirect("show");
@@ -30,7 +33,7 @@ router.post("/show", (req, res) => {
 
 //New route - show form to create post topic
 router.get("/new", (req, res) =>{
-
+    res.render("new");
 });
 
 
