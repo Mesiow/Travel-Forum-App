@@ -3,7 +3,7 @@
 
 		<div style="margin-top:55px;"class="ui main text container segment">
 			<div class="ui huge header">New Topic</div>
-			<form class="ui form" action="/blogs" method="POST">
+			<form class="ui form" action="/show" method="POST">
 			<!--content[title] puts title inside of an object called content so that instead of getting the value directly with req.body.title,
 		we need to specify the object: req.body.content.title-->
 			<div class="field">
@@ -22,7 +22,7 @@
 				<label>Content</label>
 				<textarea name="content[body]"></textarea>
 			</div>
-			<input class="ui blue basic button" type="submit">
+			<input class="ui blue button" type="submit">
 			</form>
 		</div>
 

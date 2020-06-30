@@ -15,19 +15,40 @@ router.get("/", (req, res) => {
 
 
 router.get("/show", (req, res) => {
-    //find all posts/topics with the mongoose in the database
-    //and render each one
+    //TODO: Add post data to render in show ejs file template
 
-    res.render("show");
+    //find all posts/topics with mongoose in the mongodb database
+    Post.find({}, (err, allposts) => {
+        if(err){
+            console.log(err);
+        }else{
+            //render show template and pass in all posts
+            res.render("show", {posts: allposts});
+        }
+    });
 });
 
 
 //Forum post Post route
 router.post("/show", (req, res) => {
-    //retrieve post data from form
     //get author of post
 
+    //retrieve post data from form
+    var newPost = {
+        title: req.body.content.title,
+        image: req.body.content.image,
+        body: req.body.content.body
+    }
+
     //add new post to the database
+    Post.create(newPost, (err, post) => {
+        if(err){
+            console.log(err);
+        }else{
+            //redirect back to forum show page (get request)
+            res.redirect("show");
+        }
+    });
 });
 
 

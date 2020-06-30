@@ -1,4 +1,21 @@
-  	
+  	<!--script to toggle active element on navbar-->
+  	<script type="text/javascript">
+  	//closure func, only called once when app loads
+  	(function(){
+  		$(document).ready(() => { //execute once document is ready
+  			var items = $("#navbar a.item");
+  			console.log(items);
+  			items.on("click", function(){
+  				$(this)
+  					.addClass("active")
+  					.siblings()
+  					.removeClass("active");
+  			});
+  		  	
+  		});
+  	})();
+  
+  	</script>
 
   	</body>
 </html>
