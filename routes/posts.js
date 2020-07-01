@@ -6,6 +6,10 @@ const router = express.Router(); //add routes to this var
 //include post model
 var Post = require("../models/post");
 
+//Seed data
+//const seedDB = require("../seed");
+//seedDB();
+
 //Root route, directs to show page
 router.get("/", (req, res) => {
     res.redirect("show");
@@ -13,8 +17,6 @@ router.get("/", (req, res) => {
 
 
 router.get("/show", (req, res) => {
-    //TODO: Add post data to render in show ejs file template
-
     //find all posts/topics with mongoose in the mongodb database
     Post.find({}, (err, allposts) => {
         if(err){
@@ -36,6 +38,7 @@ router.post("/show", (req, res) => {
         title: req.body.content.title,
         image: req.body.content.image,
         body: req.body.content.body
+        //created var has default value already
     }
 
     //add new post to the database

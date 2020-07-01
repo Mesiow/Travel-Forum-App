@@ -19,23 +19,7 @@ mongoose.set('useUnifiedTopology', true);
 //set up and connect to restful_blog_app database
 mongoose.connect("mongodb://localhost/travel_forum_app");//creates the travel_forum_app database for us in mongodb
 
-/*
-//Seed User test
-const User = require("./models/user");
 
-var user = new User({
-    username:"User1",
-    password:"123"
-});
-
-user.save((err) => {
-    if(err){
-        console.log(err);
-    }
-    else{
-        console.log("user saved");
-    }
-});*/
 
 //============
 //Routes
