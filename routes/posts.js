@@ -2,11 +2,9 @@
 
 const express = require("express");
 const router = express.Router(); //add routes to this var
+
 //include post model
 var Post = require("../models/post");
-
-//Scripts
-var newRouteScript = require("../public/scripts/new")
 
 //Root route, directs to show page
 router.get("/", (req, res) => {
