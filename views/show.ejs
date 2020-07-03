@@ -1,45 +1,23 @@
-<%- include("partials/header") %>
+<%-include("partials/header")%>
 
-<div class="ui main text container">
-	<div style="padding-top:55px;"class="ui huge header">Topics</div>
+<div class="ui main text container segment">
+	<div class="ui huge header"><%= post.title %></div>
 	<div class="ui top attached segment">
-		<div class="ui divided items">
-			<!--check if posts array has any posts to show-->
-			<% if(posts.length >= 0){ %>
-			<!--loop each post here-->
-			<% posts.forEach(function(post){%>
-			<div class="item">
-				<div class="image">
-					<!--small img of post-->
-					<!--<img src="https://www.tripsavvy.com/thmb/6jvw4nAA0aT-MV6km_MYbNfMa8U=/2122x1415/filters:fill(auto,1)/GlacierNationalParkMontana-FengWeiPhotography-Getty-5711489a3df78c3fa2b5d2a2.jpg">-->
-					<img src="<%=post.image%>">
-				</div>
-				<div class="content">
-					<!--clickable title of post to see more-->
-					<a class="header" href="#"><%=post.title%></a>
-					<div class="meta">
-						<!--date post was created-->
-						<span><%=post.created.toDateString();%></span>
-					</div>
-					<div class="description">
-						<p><%=post.body.substring(0, 100)%></p> <!--substring only will show the first 100 characters of the body -->
-					</div>
-					<div class="extra">
-						<!--read more button that directs to topic page of post-->
-						<span class="ui animated mini blue button">
-							<span class="inverted visible content"><a style="color:white;"href="#">Read more</a></span>
-							<span class="hidden content">
-								<i style="color:white;"class="right chevron icon"></i>
-							</span>
-						</span>
-					</div>
-				</div>
+		<div class="item">
+			<img class="ui centered rounded image" src="<%= post.image %>">
+			<div class="content">
+				<span><%= post.created.toDateString() %></span>
 			</div>
-			<%});%>
-			<%}%>
+			<div class="description">
+				<p><%= post.body %></p>
+			</div>
+			<a id="edit" class="ui orange basic button" href="/blogs/<%= blog._id %>/edit">Edit</a>
+			<!--delete form-->
+			<form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+				<button id="deleteButton" class="ui red basic button">Delete</button>
+			</form>
 		</div>
 	</div>
 </div>
 
-
-<%- include("partials/footer") %>
+<%-include("partials/footer")%>

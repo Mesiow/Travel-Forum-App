@@ -3,7 +3,7 @@
 
 		<div style="margin-top:55px;"class="ui main text container segment">
 			<div class="ui huge header">New Topic</div>
-			<form class="ui form" action="/show" method="POST">
+			<form class="ui form" action="/topics" method="POST">
 			<!--content[title] puts title inside of an object called content so that instead of getting the value directly with req.body.title,
 		we need to specify the object: req.body.content.title-->
 			<div class="field">
@@ -15,7 +15,9 @@
 				<!--<input type="text" name="content[image]" placeholder="image">-->
 				
 				<img id="img-show" class="ui tiny image" src="https://semantic-ui.com/images/wireframe/image.png">
-				<input style="margin-left:-16px;"type="file" id="img" name="content[image]" accept="image/*" onchange="changeImg()"> <!--accept attribute accepts only image files-->
+				<input style="margin-left:-16px;"type="file" id="img" name="content[image_local]" accept="image/*" onchange="changeImg()"> <!--accept attribute accepts only image files-->
+				<input type="text" name="content[image_link]" placeholder="url">
+				 
 
 			</div>
 			<div class="field">
@@ -28,10 +30,25 @@
 
 		<!--Script-->
 		<script type="text/javascript">
+			//TODO Add feature to upload a local image file instead of only using a url
 			function changeImg(){
        		  var file = document.getElementById("img").files[0]; //grab file value from input
+
        		  var img_show = document.getElementById("img-show");
-       		  img_show.src = window.URL.createObjectURL(file); //set img src to the file we chose
+       		  //img_show.src = window.URL.createObjectURL(file); //set img src to the file we chose
+
+       		  var reader = new FileReader(); //new file reader
+       		  reader.onload = function(ev){
+       		  	img_show.src = ev.target.result;
+       		  	console.log(img_show.src);
+       		  }
+
+       		  if(file){
+       		  	//load image as base64 encoded uri
+       		  	reader.readAsDataURL(file);
+       		  }else{
+       		  	img_show.src = "";
+       		  }
        		}
 		</script>
 
