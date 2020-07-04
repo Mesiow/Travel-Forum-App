@@ -1,23 +1,40 @@
 <%-include("partials/header")%>
 
-<div class="ui main text container segment">
+<div style="margin-top:55px;" class="ui main text container segment">
 	<div class="ui huge header"><%= post.title %></div>
 	<div class="ui top attached segment">
 		<div class="item">
 			<img class="ui centered rounded image" src="<%= post.image %>">
 			<div class="content">
-				<span><%= post.created.toDateString() %></span>
+				<span style="font-weight: bold;"><%= post.created.toDateString() %></span>
 			</div>
 			<div class="description">
-				<p><%= post.body %></p>
+				<p style="padding-bottom:25px; padding-top:10px;"><%= post.body %></p>
 			</div>
-			<a id="edit" class="ui orange basic button" href="/blogs/<%= blog._id %>/edit">Edit</a>
+
+			<!--reply button-->
+			<button id="replyButton" class="ui tiny grey basic button">Reply</button>
+			
+			<div style="float:right;"id="delete-form">
 			<!--delete form-->
-			<form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
-				<button id="deleteButton" class="ui red basic button">Delete</button>
+			<form action="/topics/<%=post._id%>?_method=DELETE" method="POST">
+				<!--edit and delete button-->
+				<a style="margin:0;"id="editButton" class="ui tiny orange basic button" href="/topics/<%= post._id%>/edit">Edit</a>
+				<button style="margin:0;"id="deleteButton" class="ui tiny red basic button">Delete</button>
 			</form>
+			</div>
 		</div>
 	</div>
 </div>
+<!--Script-->
+<script type="text/javascript">
+	$(document).ready(function(){
+		//fill buttons with their respective color on hover      
+		$("#replyButton").hover(function(){$(this).toggleClass("basic");});
+		$("#editButton").hover(function(){$(this).toggleClass("basic");});
+		$("#deleteButton").hover(function(){$(this).toggleClass("basic");})
+	});
+
+</script>
 
 <%-include("partials/footer")%>
