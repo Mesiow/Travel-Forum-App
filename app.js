@@ -16,6 +16,7 @@ app.use(methodOverride("_method")); //whenever we get a request with _method as 
 //fix deprecations
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
+mongoose.set("useFindAndModify", false);
 //set up and connect to restful_blog_app database
 mongoose.connect("mongodb://localhost/travel_forum_app");//creates the travel_forum_app database for us in mongodb
 

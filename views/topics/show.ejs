@@ -1,4 +1,4 @@
-<%-include("partials/header")%>
+<%-include("../partials/header")%>
 
 <div style="margin-top:55px;" class="ui main text container segment">
 	<div class="ui huge header"><%= post.title %></div>
@@ -19,7 +19,7 @@
 			<!--delete form-->
 			<form action="/topics/<%=post._id%>?_method=DELETE" method="POST">
 				<!--edit and delete button-->
-				<a style="margin:0;"id="editButton" class="ui tiny orange basic button" href="/topics/<%= post._id%>/edit">Edit</a>
+				<a style="margin:0;"id="editButton" class="ui tiny orange basic button" href="/topics/<%=post._id%>/edit">Edit</a>
 				<button style="margin:0;"id="deleteButton" class="ui tiny red basic button">Delete</button>
 			</form>
 			</div>
@@ -37,4 +37,4 @@
 
 </script>
 
-<%-include("partials/footer")%>
+<%-include("../partials/footer")%>

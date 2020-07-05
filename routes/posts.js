@@ -37,16 +37,16 @@ router.post("/topics", (req, res) => {
     //check if img selected is from locally or a link
     //if no local img selected
     var image_type;
-    if(req.body.content.image_local === ""){
-        image_type = req.body.content.image_link;
+    if(req.body.topic.image_local === ""){
+        image_type = req.body.topic.image_link;
     }else{
-        image_type = req.body.content.image_local;
+        image_type = req.body.topic.image_local;
     }
 
     var newPost = {
-        title: req.body.content.title,
+        title: req.body.topic.title,
         image: image_type,
-        body: req.body.content.body
+        body: req.body.topic.body
         //created var has default value already
     }
 
@@ -64,7 +64,7 @@ router.post("/topics", (req, res) => {
 
 //New route - show form to create post topic
 router.get("/topics/new", (req, res) =>{
-    res.render("new");
+    res.render("topics/new");
 });
 
 
@@ -76,22 +76,39 @@ router.get("/topics/:id", (req, res) => {
             console.log(err);
         }else{
             //render show template of that post with that id
-            res.render("show", {post: foundpost});
+            res.render("topics/show", {post: foundpost});
         }
     });
     //grab comment id and populate the comments array with the data associated at the id
 });
 
 
-//Edit post - edit a post if it is yours
+//Edit post - edit a topic if it is yours
 router.get("/topics/:id/edit", (req, res) => {
     //find post by id and show the edit form
+    Post.findById(req.params.id, (err, foundpost) => {
+        if(err){
+            console.log(err);
+        }else{
+            //render edit template for the specific topic with that id
+            res.render("topics/edit", {post: foundpost});
+        }
+    });
 });
 
 
 //Update post - update a post after editing
 router.put("/topics/:id", (req, res) => {
     //find post by id and update it, then render it
+    //this method takes the id of the topic, the new topic data to update the old (submitted by the form)
+    Post.findByIdAndUpdate(req.params.id, req.body.topic, (err, foundpost) => {
+        if(err){
+            console.log(err);
+        }else{
+            //redirect to updated post
+            res.redirect("/topics/" + req.params.id);
+        }
+    });
 });
 
 

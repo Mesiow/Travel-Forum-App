@@ -1,4 +1,4 @@
-<%- include("partials/header") %>
+<%- include("../partials/header") %>
 <link href="/stylesheets/new.css" rel="stylesheet" type="text/css">
 
 		<div style="margin-top:55px;"class="ui main text container segment">
@@ -8,21 +8,21 @@
 		we need to specify the object: req.body.content.title-->
 			<div class="field">
 				<label>Title</label>
-				<input type="text" name="content[title]" placeholder="title">
+				<input type="text" name="topic[title]" placeholder="title">
 			</div>
 			<div class="field">
 				<label>Image</label>
 				<!--<input type="text" name="content[image]" placeholder="image">-->
 				
 				<img id="img-show" class="ui tiny image" src="https://semantic-ui.com/images/wireframe/image.png">
-				<input style="margin-left:-16px;"type="file" id="img" name="content[image_local]" accept="image/*" onchange="changeImg()"> <!--accept attribute accepts only image files-->
-				<input type="text" name="content[image_link]" placeholder="url">
+				<input style="margin-left:-16px;"type="file" id="img" name="topic[image_local]" accept="image/*" onchange="changeImg()"> <!--accept attribute accepts only image files-->
+				<input type="text" name="topic[image_link]" placeholder="url">
 				 
 
 			</div>
 			<div class="field">
 				<label>Content</label>
-				<textarea name="content[body]"></textarea>
+				<textarea name="topic[body]"></textarea>
 			</div>
 			<input class="ui blue button" type="submit">
 			</form>
@@ -52,4 +52,4 @@
        		}
 		</script>
 
-<%- include("partials/footer") %>
+<%- include("../partials/footer") %>

@@ -1,0 +1,27 @@
+<%- include("../partials/header") %>
+
+<div style="margin-top:55px;" class="ui main text container segment">
+	<div class="ui huge header">Edit topic <%= post.title %></div>
+	<!--html does not support put or delete request so we must stick with post method here-->
+	<!--and add ?_method=PUT part of the method override package to the end of the action-->
+	<form class="ui form" action="/topics/<%=post._id%>?_method=PUT" method="POST">
+		<!--topic[title] puts title inside of an object called topic so that instead of getting the value directly with req.body.title,
+		we need to specify the object: req.body.topic.title-->
+		<div class="field">
+			<label>Title</label>
+			<input type="text" name="topic[title]" value="<%= post.title %>"> <!--the value attribute pre fills the text input-->
+		</div>
+		<div class="field">
+			<label>Image</label>
+			<input type="text" name="topic[image]" value="<%= post.image %>">
+		</div>
+		<div class="field">
+			<label>Topic Content</label>
+			<textarea name="topic[body]"><%= post.body %></textarea>
+		</div>
+		<input class="ui blue basic button" type="Submit" value="Update">
+	</form>
+</div>
+
+
+<%- include("../partials/footer") %>
