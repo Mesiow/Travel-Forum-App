@@ -115,6 +115,13 @@ router.put("/topics/:id", (req, res) => {
 //Delete post - delete a post from the forum if it's yours
 router.delete("/topics/:id", (req, res) =>{
     //find post by id and remove it
+    Post.findByIdAndRemove(req.params.id, (err) => {
+        if(err){
+            console.log(err);
+        }else{
+            res.redirect("/topics");
+        }
+    })
 });
 
 

@@ -19,9 +19,12 @@
 			<label>Topic Content</label>
 			<textarea name="topic[body]"><%= post.body %></textarea>
 		</div>
-		<input class="ui blue basic button" type="Submit" value="Update">
+		<input id="updateButton" class="ui tiny blue basic button" type="Submit" value="Update">
 	</form>
 </div>
+<script type="text/javascript">
+	$("#updateButton").hover(function(){$(this).toggleClass("basic");});
+</script>
 
 
 <%- include("../partials/footer") %>
