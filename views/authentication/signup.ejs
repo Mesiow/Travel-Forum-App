@@ -1,0 +1,25 @@
+<%-include("../partials/header")%>
+
+<div style="margin-top:55px;"class="ui main text container segment">
+			<div class="ui huge header">Sign Up</div>
+			<form class="ui form" action="/topics" method="POST">
+		
+			<div class="field">
+				<label>Username</label>
+				<input type="text" name="username" placeholder="username">
+			</div>
+		
+			<div class="field">
+				<label>E-mail</label>
+				<input type="email" name="e-mail" placeholder="e-mail">
+			</div>
+
+			<div class="field">
+				<label>Password</label>
+				<input type="password" name="password" placeholder="password">
+			</div>
+			<button class="ui tiny blue button">Sign Up</button>
+			</form>
+</div>
+
+<%-include("../partials/footer")%>
