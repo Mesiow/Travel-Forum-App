@@ -28,6 +28,10 @@
 						<!--read more button that directs to show more info page of topic-->
 						<span>
 							<a class="readButton ui mini blue basic button" href="/topics/<%=post._id%>">Read more</a>
+
+							<span style="float:right;" class="meta">
+								by <%=post.author.username%>
+							</span>
 						</span>
 					</div>
 				</div>

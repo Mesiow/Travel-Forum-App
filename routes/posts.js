@@ -43,10 +43,14 @@ router.post("/topics", (req, res) => {
         image_type = req.body.topic.image_local;
     }
 
+    var author = { //grab author of the post/topic
+        username: req.body.username
+    }
     var newPost = {
         title: req.body.topic.title,
         image: image_type,
-        body: req.body.topic.body
+        body: req.body.topic.body,
+        author: author
         //created var has default value already
     }
 

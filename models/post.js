@@ -13,6 +13,12 @@ var postSchema = new mongoose.Schema({
         },
         username: String //Author name
     },
+    /*comments:[ //comments is an array of comment id's (Object reference way of associating data)
+        {
+            id: mongoose.Schema.Types.ObjectId,
+            ref: "Comment"
+        }
+    ],*/
     //created var is of type Date object and Date.now sets 
     //it to the current date as a default value if 
     //we don't specify anything
