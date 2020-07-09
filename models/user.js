@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+var mongoose = require("mongoose");
 
 //create schema for a user
 
@@ -8,7 +8,7 @@ var userSchema = new mongoose.Schema({
 });
 
 //create model
-var User = new mongoose.model("User", userSchema);
+var User = mongoose.model("User", userSchema);
 
 //export model for use
 module.exports = User;

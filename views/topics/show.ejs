@@ -26,71 +26,36 @@
 		</div>
 	</div>
 
-	<!--COMMENTS-->
-
-	<div class="ui small comments">
+<!--COMMENTS Section-->
+<div class="ui small comments">
   <h3 class="ui dividing header">Comments</h3>
+  <!-- post.comments.forEach(function(comment){-->  <!--loop over comments and display-->
+  <%post.comments.forEach(function(comment){%>
   <div class="comment">
-    <a class="avatar">
-      <img src="/images/avatar/small/matt.jpg">
-    </a>
     <div class="content">
       <a class="author">Matt</a>
       <div class="metadata">
         <span class="date">Today at 5:42PM</span>
       </div>
       <div class="text">
-        How artistic!
+        <%=comment.text%>
       </div>
       <div class="actions">
         <a class="reply">Reply</a>
       </div>
+      <!--Add reply form here if reply link has active class-->
+
     </div>
   </div>
-  <div class="comment">
-    <a class="avatar">
-      <img src="/images/avatar/small/elliot.jpg">
-    </a>
-    <div class="content">
-      <a class="author">Elliot Fu</a>
-      <div class="metadata">
-        <span class="date">Yesterday at 12:30AM</span>
-      </div>
-      <div class="text">
-        <p>This has been very useful for my research. Thanks as well!</p>
-      </div>
-      <div class="actions">
-        <a class="reply">Reply</a>
-      </div>
-    </div>
-    <div class="comments">
-      <div class="comment">
-        <a class="avatar">
-          <img src="/images/avatar/small/jenny.jpg">
-        </a>
-        <div class="content">
-          <a class="author">Jenny Hess</a>
-          <div class="metadata">
-            <span class="date">Just now</span>
-          </div>
-          <div class="text">
-            Elliot you are always so right :)
-          </div>
-          <div class="actions">
-            <a class="reply">Reply</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%});%>
   <!--put method override because we are putting a comment on the same page-->
-  <form class="ui reply form" action="/topics/<%=post._id%>?method=PUT" method="POST">
+  <form class="ui reply form" action="/topics/<%=post._id%>" method="POST">
     <div class="field">
-      <textarea></textarea>
+      <textarea name="comment"></textarea>
     </div>
-    <div class="ui blue labeled submit icon button">
+    <button class="ui blue labeled submit icon button">
       <i class="icon edit"></i> Add Comment
-    </div>
+    </button>
   </form>
 </div>
 

@@ -29,10 +29,12 @@ mongoose.connect("mongodb://localhost/travel_forum_app");//creates the travel_fo
 //Routes for adding, updating and deleting forum posts
 const forumPostRoutes = require("./routes/posts");
 const forumAuthRoutes = require("./routes/authentication");
+const forumCommentRoutes = require("./routes/comments");
 
 //tell express to use our exported routes
 app.use(forumPostRoutes);
 app.use(forumAuthRoutes);
+app.use(forumCommentRoutes);
 
 
 

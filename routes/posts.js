@@ -75,7 +75,8 @@ router.get("/topics/new", (req, res) =>{
 //Show route - shows more info about one post topic
 router.get("/topics/:id", (req, res) => {
     //find post topic with provided id
-    Post.findById(req.params.id, (err, foundpost) => {
+    //grab post id and populate the comments array with the data associated at the id in the array
+    Post.findById(req.params.id).populate("comments").exec((err, foundpost) => {
         if(err){
             console.log(err);
         }else{
@@ -83,7 +84,6 @@ router.get("/topics/:id", (req, res) => {
             res.render("topics/show", {post: foundpost});
         }
     });
-    //grab comment id and populate the comments array with the data associated at the id
 });
 
 
@@ -95,6 +95,7 @@ router.get("/topics/:id/edit", (req, res) => {
             console.log(err);
         }else{
             //render edit template for the specific topic with that id
+            console.log(foundpost);
             res.render("topics/edit", {post: foundpost});
         }
     });
