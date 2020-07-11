@@ -1,8 +1,9 @@
 <%-include("../partials/header")%>
+<link href="/stylesheets/auth.css" rel="stylesheet" type="text/css">
 
 <div style="margin-top:55px;"class="ui main text container segment">
 			<div class="ui huge header">Sign Up</div>
-			<form class="ui form" action="/topics" method="POST">
+			<form class="ui form" action="/register" method="POST">
 		
 			<div class="field">
 				<label>Username</label>
@@ -11,7 +12,7 @@
 		
 			<div class="field">
 				<label>E-mail</label>
-				<input type="email" name="e-mail" placeholder="e-mail">
+				<input type="email" name="email" placeholder="e-mail">
 			</div>
 
 			<div class="field">
@@ -20,6 +21,10 @@
 			</div>
 			<button class="ui tiny blue button">Sign Up</button>
 			</form>
+
+			<div class="center ui message">
+      		Already have an account? <a href="/login">Login</a>
+    		</div>
 </div>
 
 <%-include("../partials/footer")%>

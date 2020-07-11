@@ -22,7 +22,7 @@ var data = [
         author:author,
     },
     {
-        title: "Aurora Bay",
+        title: "Aurora Lake",
         image: "https://www.hurtigruten.com/globalassets/photos/inspiration/northern-lights/hub/aurora-borealis-above-snowy-island-vestvagoya-lofoten_swen-stroop.jpg?width=1900&height=950&center=0.51,0.34&transform=DownResizeCrop",
         body:"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
         author:author,
@@ -38,7 +38,15 @@ function seedDB(){
         console.log("removed posts");
      }
     });
-     //add a few posts
+    //Remove all comments
+    Comment.deleteMany({}, function(err){
+        if(err){
+            console.log(err);
+        }else{
+            console.log("removed comments");
+        }
+    });
+     //add a few test posts
      data.forEach(function(seed){ //loop over items in data array
         Post.create(seed, function(err, post){ //create a campground
             if(err){

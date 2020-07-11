@@ -1,6 +1,7 @@
 <%-include("../partials/header")%>
+<link href="/stylesheets/auth.css" rel="stylesheet" type="text/css">
 
-<div style="margin-top:55px;"class="ui main text container segment">
+<div style="margin-top:55px;" class="ui main text container segment">
 			<div class="ui huge header">Login</div>
 			<form class="ui form" action="/topics" method="POST">
 			
@@ -15,6 +16,10 @@
 			</div>
 			<button class="ui tiny blue button">Login</button>
 			</form>
+
+			<div class="center ui message">
+      		New to us? <a href="/register">Sign Up</a>
+    		</div>
 </div>
 
 <%-include("../partials/footer")%>
