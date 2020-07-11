@@ -12,14 +12,13 @@
 				<p style="padding-bottom:25px; padding-top:10px;"><%= post.body %></p>
 			</div>
 
-			<!--reply button-->
-			<button id="replyButton" class="ui tiny grey basic button">Reply</button>
+			<!--edit button-->
+			<a style="margin:0;"id="editButton" class="ui tiny orange basic button" href="/topics/<%=post._id%>/edit">Edit</a>
 			
 			<div style="float:right;"id="delete-form">
 			<!--delete form-->
 			<form action="/topics/<%=post._id%>?_method=DELETE" method="POST">
-				<!--edit and delete button-->
-				<a style="margin:0;"id="editButton" class="ui tiny orange basic button" href="/topics/<%=post._id%>/edit">Edit</a>
+				<!--delete button-->
 				<button style="margin:0;"id="deleteButton" class="ui tiny red basic button">Delete</button>
 			</form>
 			</div>
@@ -30,10 +29,10 @@
 <div class="ui small comments">
   <h3 class="ui dividing header">Comments</h3>
   <!-- post.comments.forEach(function(comment){-->  <!--loop over comments and display-->
-  <%post.comments.forEach(function(comment){%>
+  <%post.comments.forEach(function(comment, index){%>
   <div class="comment">
     <div class="content">
-      <a class="author">Matt</a>
+      <a class="author">Mesiow</a>
       <div class="metadata">
         <span class="date">Today at 5:42PM</span>
       </div>
@@ -41,14 +40,23 @@
         <%=comment.text%>
       </div>
       <div class="actions">
-        <a class="reply">Reply</a>
+        <a class="reply" data-replyform="form<%=index%>">Reply</a>
+        <!--Add reply form here if reply link has active class-->
+        <!--data-replyform attribute tells us which number this form is-->
+     	 <form style="display:none;" id="form<%=index%>" class="replyForm ui reply form" action="/topics/<%=post._id%>" method="POST">
+   			<div class="field">
+     			<textarea name="reply_comment"></textarea>
+    	 	</div>
+    		<button class="ui blue labeled submit icon button">
+     		<i class="icon edit"></i> Add Reply
+   		 	</button>
+  	  	</form>
       </div>
-      <!--Add reply form here if reply link has active class-->
 
     </div>
   </div>
   <%});%>
-  <!--put method override because we are putting a comment on the same page-->
+  <!--form to post new comment-->
   <form class="ui reply form" action="/topics/<%=post._id%>" method="POST">
     <div class="field">
       <textarea name="comment"></textarea>
@@ -57,6 +65,7 @@
       <i class="icon edit"></i> Add Comment
     </button>
   </form>
+
 </div>
 
 </div>
@@ -66,7 +75,23 @@
 		//fill buttons with their respective color on hover      
 		$("#replyButton").hover(function(){$(this).toggleClass("basic");});
 		$("#editButton").hover(function(){$(this).toggleClass("basic");});
-		$("#deleteButton").hover(function(){$(this).toggleClass("basic");})
+		$("#deleteButton").hover(function(){$(this).toggleClass("basic");});
+
+
+		//add active class to reply link when clicked
+		$("a.reply").on("click", function(event){
+			var replyformId = $(this).attr("data-replyform"); //get reply link id
+			console.log("reply form id: ", replyformId);
+			if($(this).hasClass("active")){ //if reply has active enabled already when we click, disable form
+				$(this).removeClass("active");
+				$("#" + replyformId).hide();
+			}else{ //if it doesn't already have active class on, enable it and display form
+				$(this).addClass("active");
+				$("#" + replyformId).toggle();
+			}
+		});
+
+
 	});
 
 </script>
