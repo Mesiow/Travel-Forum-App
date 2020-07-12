@@ -44,14 +44,15 @@ router.post("/topics", (req, res) => {
     }
 
     var author = { //grab author of the post/topic
-        username: req.body.username
+        id: req.user._id,
+        username: req.user.username
     }
     var newPost = {
         title: req.body.topic.title,
         image: image_type,
         body: req.body.topic.body,
         author: author
-        //created var has default value already
+        //created(time) var has default value already
     }
 
     //add new post to the database
