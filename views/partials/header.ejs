@@ -20,8 +20,13 @@
 				<a href="/" class="active item">Home</a>
 				<a href="/topics/new" class="item">New Topic</a>
 				<div class="right menu"> <!--Shift items to the right-->
-					<a href="/register" class="item">Sign Up</a>
-					<a href="/login" class="item">Log In</a>
+					<% if(!currentUser){%> <!--if there is no current user in the session show links-->
+						<a href="/register" class="item">Sign Up</a>
+						<a href="/login" class="item">Log In</a>
+					<%}else{%>
+						<a href="/" class="item">Signed in as <%=currentUser.username%></a>
+						<a href="/logout" class="item">Logout</a>
+					<%}%>
 				</div>
 			<!--</div>-->
 		</div>

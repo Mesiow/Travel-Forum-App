@@ -34,6 +34,7 @@ router.post("/register", (req, res) => {
     User.register({username: user.username, email: user.email}, user.password, (err, user) => {
         if(err){
             console.log(err);
+            return res.redirect("/register");
         }else{
             passport.authenticate("local")(req, res, () => {
                 console.log("Success, Welcome " + user.username);
@@ -51,6 +52,22 @@ router.post("/register", (req, res) => {
 //Log In Template
 router.get("/login", (req, res) => {
     res.render("authentication/login");
+});
+
+
+//login post route
+//authenticate locally, and pass in where to redirect on success or failure of log in
+//automatically checks the data inputed
+router.post("/login", passport.authenticate("local", {successRedirect:"/topics", failureRedirect:"/login"}),
+    (req, res) => {
+
+});
+
+
+//logout route
+router.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/topics");
 });
 
 
