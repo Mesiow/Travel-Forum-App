@@ -12,16 +12,20 @@
 				<p style="padding-bottom:25px; padding-top:10px;"><%= post.body %></p>
 			</div>
 
-			<!--edit button-->
-			<a style="margin:0;"id="editButton" class="ui tiny orange basic button" href="/topics/<%=post._id%>/edit">Edit</a>
+			<!--if there is a current user and the user owns the post, show the edit and delete buttons-->
+			<% if(currentUser && post.author.id.equals(
+			currentUser._id)){%>
+				<!--edit button-->
+				<a style="margin:0;"id="editButton" class="ui tiny orange basic button" href="/topics/<%=post._id%>/edit">Edit</a>
 			
-			<div style="float:right;"id="delete-form">
-			<!--delete form-->
-			<form action="/topics/<%=post._id%>?_method=DELETE" method="POST">
-				<!--delete button-->
-				<button style="margin:0;"id="deleteButton" class="ui tiny red basic button">Delete</button>
-			</form>
-			</div>
+				<div style="float:right;"id="delete-form">
+					<!--delete form-->
+					<form action="/topics/<%=post._id%>?_method=DELETE" method="POST">
+						<!--delete button-->
+						<button style="margin:0;"id="deleteButton" class="ui tiny red basic button">Delete</button>
+					</form>
+				</div>
+			<%}%>
 		</div>
 	</div>
 
@@ -41,7 +45,11 @@
       </div>
       <div class="actions">
         <a class="reply" data-replyform="form<%=index%>">Reply</a>
-        <a class="delete">Delete</a>
+        <!--if current user loggged in owns this comment, show the delete option-->
+        <%if(currentUser && comment.author.id.equals(
+        currentUser._id)){%>
+        	<a class="delete">Delete</a>
+        <%}%>
         <!--Add reply form here if reply link has active class-->
         <!--data-replyform attribute tells us which number this form is-->
      	 <form style="display:none;" id="form<%=index%>" class="replyForm ui reply form" action="/topics/<%=post._id%>" method="POST">
