@@ -32,7 +32,7 @@
   <%post.comments.forEach(function(comment, index){%>
   <div class="comment">
     <div class="content">
-      <a class="author">Mesiow</a>
+      <a class="author"><%=comment.author.username%></a>
       <div class="metadata">
         <span class="date">Today at 5:42PM</span>
       </div>
@@ -41,6 +41,7 @@
       </div>
       <div class="actions">
         <a class="reply" data-replyform="form<%=index%>">Reply</a>
+        <a class="delete">Delete</a>
         <!--Add reply form here if reply link has active class-->
         <!--data-replyform attribute tells us which number this form is-->
      	 <form style="display:none;" id="form<%=index%>" class="replyForm ui reply form" action="/topics/<%=post._id%>" method="POST">
@@ -59,7 +60,7 @@
   <!--form to post new comment-->
   <form class="ui reply form" action="/topics/<%=post._id%>" method="POST">
     <div class="field">
-      <textarea name="comment"></textarea>
+      <textarea name="comment[text]"></textarea>
     </div>
     <button class="ui blue labeled submit icon button">
       <i class="icon edit"></i> Add Comment
