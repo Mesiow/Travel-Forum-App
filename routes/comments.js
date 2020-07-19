@@ -5,11 +5,13 @@ var mongoose = require("mongoose");
 //include models
 var Post = require("../models/post");
 var Comment = require("../models/comment");
+//middleware
+var middleware = require("../middleware/index");
 
 
 //Create comment (POST)
 //comment form is on same page as show page so we post to the same area
-router.post("/topics/:id", (req, res) => {
+router.post("/topics/:id", middleware.isLoggedIn, (req, res) => {
     //look up post using id
     console.log("posting ", req.body.comment);
     Post.findById(req.params.id, (err, foundpost) => {

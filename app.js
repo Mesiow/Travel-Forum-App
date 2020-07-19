@@ -64,13 +64,13 @@ app.use((req, res, next) => { //make current user available to every template to
 
 //Routes for adding, updating and deleting forum posts
 const forumPostRoutes = require("./routes/posts");
-const forumAuthRoutes = require("./routes/authentication");
 const forumCommentRoutes = require("./routes/comments");
+const forumAuthRoutes = require("./routes/authentication");
 
 //tell express to use our exported routes
 app.use(forumPostRoutes);
-app.use(forumAuthRoutes);
 app.use(forumCommentRoutes);
+app.use(forumAuthRoutes);
 
 
 

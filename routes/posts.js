@@ -5,6 +5,8 @@ const router = express.Router(); //add routes to this var
 
 //include post model
 var Post = require("../models/post");
+//include middleware
+var middleware = require("../middleware/index");
 
 //Seed data
 const seedDB = require("../seed");
@@ -30,7 +32,8 @@ router.get("/topics", (req, res) => {
 
 
 //Forum post Post route
-router.post("/topics", (req, res) => {
+//middleware checks if we are logged in first
+router.post("/topics", middleware.isLoggedIn, (req, res) => {
     //get author of post
 
     //retrieve post data from form
@@ -68,7 +71,7 @@ router.post("/topics", (req, res) => {
 
 
 //New route - show form to create post topic
-router.get("/topics/new", (req, res) =>{
+router.get("/topics/new", middleware.isLoggedIn, (req, res) =>{
     res.render("topics/new");
 });
 
@@ -89,7 +92,7 @@ router.get("/topics/:id", (req, res) => {
 
 
 //Edit post - edit a topic if it is yours
-router.get("/topics/:id/edit", (req, res) => {
+router.get("/topics/:id/edit", middleware.checkPostOwnership, (req, res) => {
     //find post by id and show the edit form
     Post.findById(req.params.id, (err, foundpost) => {
         if(err){
@@ -104,7 +107,7 @@ router.get("/topics/:id/edit", (req, res) => {
 
 
 //Update post - update a post after editing
-router.put("/topics/:id", (req, res) => {
+router.put("/topics/:id", middleware.checkPostOwnership, (req, res) => {
     //find post by id and update it, then render it
     //this method takes the id of the topic, the new topic data to update the old (submitted by the form)
     Post.findByIdAndUpdate(req.params.id, req.body.topic, (err, foundpost) => {
@@ -119,7 +122,7 @@ router.put("/topics/:id", (req, res) => {
 
 
 //Delete post - delete a post from the forum if it's yours
-router.delete("/topics/:id", (req, res) =>{
+router.delete("/topics/:id", middleware.checkPostOwnership, (req, res) =>{
     //find post by id and remove it
     Post.findByIdAndRemove(req.params.id, (err) => {
         if(err){
