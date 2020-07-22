@@ -17,7 +17,7 @@ middleware.isLoggedIn = (req, res, next) => {
 middleware.checkCommentOwnership = (req, res, next) => {
     if(req.isAuthenticated()){
         //check if user owns the comment
-        Comment.findById(req.params.id, (err, foundComment) => {
+        Comment.findById(req.params.comment_id, (err, foundComment) => {
             if(err){
                 res.redirect("back");
             }else{
