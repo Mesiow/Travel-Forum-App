@@ -6,3 +6,8 @@ body{
     font-size: medium;
 }
 
+.ui.segment{
+    border: 1px outset gray;
+    /*box-shadow: 10px 3px 8px black;*/
+}
+

@@ -1,20 +1,21 @@
 <%-include("../partials/header")%>
 
-<div style="margin-top:55px;" class="ui main text container segment">
+<div style="margin-top:5px;" class="ui main container segment">
 	<div class="ui huge header"><%= post.title %></div>
 	<div class="ui top attached segment">
 		<div class="item">
-			<img class="ui centered rounded image" src="<%= post.image %>">
+			<img class="ui fluid centered rounded image" src="<%= post.image %>">
 			<div class="content">
 				<span style="font-weight: bold;"><%= post.created.toDateString() %></span>
+				<span style="float:right;"class="meta">by <%=post.author.username%></span>
 			</div>
 			<div class="description">
 				<p style="padding-bottom:25px; padding-top:10px;"><%= post.body %></p>
 			</div>
 
 			<!--if there is a current user and the user owns the post, show the edit and delete buttons-->
-			 <!-- if(currentUser && post.author.id.equals(
-			currentUser._id)){-->
+			 <%if(currentUser && post.author.id.equals(
+			currentUser._id)){%>
 				<!--edit button-->
 				<a style="margin:0;"id="editButton" class="ui tiny orange basic button" href="/topics/<%=post._id%>/edit">Edit</a>
 			
@@ -25,12 +26,13 @@
 						<button style="margin:0;"id="deleteButton" class="ui tiny red basic button">Delete</button>
 					</form>
 				</div>
-			<!--}-->
+			<%}%>
 		</div>
 	</div>
 
 <!--COMMENTS Section-->
-<div class="ui small comments">
+<div class="ui container segment">
+ <div class="ui small comments">
   <h3 class="ui dividing header">Comments</h3>
   <!-- post.comments.forEach(function(comment){-->  <!--loop over comments and display-->
  <%if(post.comments.length > 0){%>
@@ -80,7 +82,7 @@
       <i class="icon edit"></i> Add Comment
     </button>
   </form>
-
+ </div>
 </div>
 
 </div>

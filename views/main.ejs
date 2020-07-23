@@ -5,13 +5,12 @@
 	<div class="ui top attached segment">
 		<div class="ui divided items">
 			<!--check if posts array has any posts to show-->
-			<% if(posts.length >= 0){ %>
+			<% if(posts.length > 0){ %>
 			<!--loop each post here-->
 			<% posts.forEach(function(post){%>
 			<div class="item">
 				<div class="image">
 					<!--small img of post-->
-					<!--<img src="https://www.tripsavvy.com/thmb/6jvw4nAA0aT-MV6km_MYbNfMa8U=/2122x1415/filters:fill(auto,1)/GlacierNationalParkMontana-FengWeiPhotography-Getty-5711489a3df78c3fa2b5d2a2.jpg">-->
 					<img src="<%=post.image%>">
 				</div>
 				<div class="content">
@@ -22,7 +21,7 @@
 						<span><%=post.created.toDateString();%></span>
 					</div>
 					<div class="description">
-						<p><%=post.body.substring(0, 100)%></p> <!--substring only will show the first 100 characters of the body -->
+						<p><%=post.body.substring(0, 100)%>...</p> <!--substring only will show the first 100 characters of the body -->
 					</div>
 					<div class="extra">
 						<!--read more button that directs to show more info page of topic-->
