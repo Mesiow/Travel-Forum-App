@@ -17,7 +17,7 @@
 		<div id="navbar" class="ui fixed small main menu">
 			<!--<div class="ui container">-->
 				<div id="site-name" class="header item"><i class="globe icon"></i>Travel Forum</div>
-				<a href="/" class="active item">Home</a>
+				<a href="/topics" class="item">Home</a>
 				<a href="/topics/new" class="item">New Topic</a>
 				<div class="right menu"> <!--Shift items to the right-->
 					<% if(!currentUser){%> <!--if there is no current user in the session show links-->
@@ -33,12 +33,6 @@
 
 		
 		<div style="padding-top:55px;" class="ui text container">
-			<!--<div class="ui success message">
-					<i class="close icon"></i>
-					<div class="header">
-						Nice!
-					</div>
-			</div>-->
 			<% if(error && error.length > 0){%> <!--check if error exists and its length is greater than 0-->
 				<div class="ui error message">
 					<i class="close icon"></i>
