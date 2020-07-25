@@ -1,5 +1,5 @@
 body{
-    background-image: url("https://www.arcgis.com/sharing/rest/content/items/ed1669ab29514686bb6e222d9afe9cfc/resources/1571036902390.jpeg?w=2630");
+   /* background-image: url("https://www.arcgis.com/sharing/rest/content/items/ed1669ab29514686bb6e222d9afe9cfc/resources/1571036902390.jpeg?w=2630");*/
 }
 
 #site-name{
@@ -9,5 +9,87 @@ body{
 .ui.segment{
     border: 1px outset gray;
     /*box-shadow: 10px 3px 8px black;*/
+}
+
+/*Background animation*/
+.images{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top: 0;
+    left: 0;
+    z-index: 0; /*make sure background images are behind other content*/
+    list-style: none; /* removes bullet points */
+    margin: 0;
+    padding: 0;
+}
+
+.images li{ /*style list items in slideshow*/
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size:cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    animation: imageAnimation 50s linear infinite;
+}
+
+.images li:nth-child(1) { 
+    background-image: url(http://i.imgur.com/K3mPv14.jpg) 
+  }
+  .images li:nth-child(2) { 
+    background-image: url(http://i.imgur.com/SBEmFpv.jpg);
+    animation-delay: 10s; 
+  }
+  .images li:nth-child(3) { 
+    background-image: url(https://wallpaperaccess.com/full/118828.jpg);
+    animation-delay: 20s; 
+  }
+  
+  .images li:nth-child(4) { 
+    background-image: url(https://www.wallpaperpimper.com/wallpapers/tfta2w/1920x1080/hawaii.jpg);
+    animation-delay: 30s; 
+  }
+  
+  .images li:nth-child(5) { 
+    background-image: url(https://i.pinimg.com/originals/12/d5/01/12d501e2aa01d898a29fb04e0fa398b6.jpg);
+    animation-delay: 40s; 
+  }
+
+  @keyframes imageAnimation { 
+    0% { 
+      opacity: 0; 
+      animation-timing-function: ease-in;
+    }
+    10% {
+      opacity: 1;
+      animation-timing-function: ease-out;
+    }
+    20% {
+      opacity: 1
+    }
+    30% {
+      opacity: 0
+    }
+  }
+
+hr{
+width: 400px;
+/*creates a little shadow below the hr*/
+border-top: 1px solid #f8f8f8;
+border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+/* Older browser support - .no-cssanimations class added by modernizr */
+.no-cssanimations .slideshow li {
+	opacity: 1;
+}
+
+.Message .message{ /*prevent error or success message from fading with background*/
+    z-index: 1;
 }
 
