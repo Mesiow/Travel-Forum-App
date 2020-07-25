@@ -1,6 +1,8 @@
 //create test posts
 
 var mongoose = require("mongoose");
+var passport = require("passport");
+
 var Post = require("./models/post");
 var Comment = require("./models/comment");
 var User = require("./models/user");
@@ -47,35 +49,10 @@ function seedDB(){
             console.log("removed comments");
         }
     });
-
-    //Delete test user
-   /* User.deleteOne({email:"test123@gmail.com"}, (err, result) => {
-        if(err){
-            console.log(err);
-        }else{
-            console.log("deleted test user");
-        }
-    });*/
     
-//Make Test User
-/*
-var user = {
-    username: "Chris",
-    email: "test123@gmail.com",
-    password: "1234"
-}
-//Pass user data into object, password separate to be hashed, and a callback
-User.register({username: user.username, email: user.email}, user.password, (err, user) => {
-    if(err){
-        console.log(err);
-    }else{
-        passport.authenticate("local")(req, res, () => {
-            console.log("Success, Welcome " + user.username);
-        });
-    }
-});*/
+
      //add a few test posts
-     data.forEach(function(seed){ //loop over items in data array
+    /* data.forEach(function(seed){ //loop over items in data array
         Post.create(seed, function(err, post){ //create a campground
             if(err){
                 console.log(err);
@@ -84,7 +61,7 @@ User.register({username: user.username, email: user.email}, user.password, (err,
                 
             }
         });
-     });
+     });*/
     //});
 }
 

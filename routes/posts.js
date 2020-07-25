@@ -9,8 +9,8 @@ var Post = require("../models/post");
 var middleware = require("../middleware/index");
 
 //Seed data
-const seedDB = require("../seed");
-seedDB();
+/*const seedDB = require("../seed");
+seedDB();*/
 
 //Root route, directs to show page
 router.get("/", (req, res) => {

@@ -15,8 +15,6 @@ router.post("/topics/:id", middleware.isLoggedIn, (req, res) => {
     //look up post using id
     console.log(req.body);
     console.log("posting ", req.body.comment);
-    console.log("isreply: ", req.body.isReply);
-    var isReply = req.body.isReply;
 
     Post.findById(req.params.id, (err, foundpost) => {
         if(err){
@@ -26,15 +24,9 @@ router.post("/topics/:id", middleware.isLoggedIn, (req, res) => {
                 if(err){
                     console.log(err);
                 }else{
-
-                    //store reply
-                    if(isReply){ //push comment into the array if it is a reply
-                        comment.replies.push(req.body.comment.reply);
-                    }else{
-                         //store current user id and current author logged in, into the comment author and id
-                         comment.author.id = req.user._id;
-                         comment.author.username = req.user.username;
-                    }
+                    //store current user id and current author logged in, into the comment author and id
+                    comment.author.id = req.user._id;
+                    comment.author.username = req.user.username;
                     //save comment
                     comment.save();
 

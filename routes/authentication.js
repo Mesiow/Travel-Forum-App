@@ -6,7 +6,6 @@ var passport = require("passport")
 
 //Models
 var User = require("../models/user");
-const e = require("express");
 
 
 //=======================
@@ -60,9 +59,29 @@ router.get("/login", (req, res) => {
 //login post route
 //authenticate locally, and pass in where to redirect on success or failure of log in
 //automatically checks the data inputed
-router.post("/login", passport.authenticate("local", {successRedirect:"/topics", failureRedirect:"/login"}),
+/*router.post("/login", passport.authenticate("local", {successRedirect:"/topics", failureRedirect:"/login",}),
     (req, res) => {
        
+});*/
+
+router.post("/login",
+    (req, res, next) => {
+       passport.authenticate("local", function(err, user, info){
+            if(err){
+                return next(err);
+            }
+            if(!user){ //incorrect credentials
+                req.flash("error", "Incorrect username or password");
+                return res.redirect("/login");
+            }
+
+            req.logIn(user, function(err){
+                if(err){
+                    return next(err);
+                }
+                return res.redirect("/topics");
+            });
+       })(req, res, next);
 });
 
 
