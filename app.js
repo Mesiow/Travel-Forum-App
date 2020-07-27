@@ -5,6 +5,9 @@ const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const flash = require("connect-flash");
 
+//include environment variables
+const env = require("./config");
+
 //TODO:
 //USE EXPRESS SANITIZE SO NOONE CAN WRITE html scripts IN A COMMENT
 
@@ -27,7 +30,14 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set("useFindAndModify", false);
 //connect to travel_forum_app database
-mongoose.connect("mongodb://localhost/travel_forum_app");//creates the travel_forum_app database for us in mongodb
+//mongoose.connect("mongodb://localhost/travel_forum_app");//creates the travel_forum_app database for us in mongodb
+
+mongoose.connect(`mongodb+srv://Chris:${env.mongoDBAtlas_password}@cluster0-fzdbs.mongodb.net/travel_forum_app?retryWrites=true&w=majority`)
+.then(() => {
+    console.log("connected to db");
+}).catch(err => {
+    console.log("Error: ", err.message);
+});
 
 //include passport packages
 var passport = require("passport");
