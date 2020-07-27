@@ -64,6 +64,7 @@ router.post("/topics", middleware.isLoggedIn, (req, res) => {
             console.log(err);
         }else{
             //redirect back to forum show page (get request)
+            req.flash("success", "New topic submitted");
             res.redirect("/topics");
         }
     });

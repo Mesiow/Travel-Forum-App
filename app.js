@@ -5,6 +5,9 @@ const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const flash = require("connect-flash");
 
+//TODO:
+//USE EXPRESS SANITIZE SO NOONE CAN WRITE html scripts IN A COMMENT
+
 
 //Models
 var User = require("./models/user");
@@ -23,7 +26,7 @@ app.use(flash());
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set("useFindAndModify", false);
-//set up and connect to restful_blog_app database
+//connect to travel_forum_app database
 mongoose.connect("mongodb://localhost/travel_forum_app");//creates the travel_forum_app database for us in mongodb
 
 //include passport packages
