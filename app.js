@@ -29,10 +29,14 @@ app.use(flash());
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set("useFindAndModify", false);
-//connect to travel_forum_app database
-//mongoose.connect("mongodb://localhost/travel_forum_app");//creates the travel_forum_app database for us in mongodb
 
-mongoose.connect(`mongodb+srv://Chris:${env.mongoDBAtlas_password}@cluster0-fzdbs.mongodb.net/travel_forum_app?retryWrites=true&w=majority`)
+//connect to travel_forum_app database
+var url = `mongodb+srv://Chris:${env.mongoDBAtlas_password}@cluster0-fzdbs.mongodb.net/travel_forum_app?retryWrites=true&w=majority`
+            || env.LOCAL_DATABASEURL;
+mongoose.connect(url, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+})
 .then(() => {
     console.log("connected to db");
 }).catch(err => {

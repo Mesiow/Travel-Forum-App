@@ -3,5 +3,6 @@ if(process.env.NODE_ENV !== "production"){
 }
 
 module.exports = {
-    mongoDBAtlas_password: process.env.mongoDBAtlas_password
+    mongoDBAtlas_password: process.env.mongoDBAtlas_password,
+    LOCAL_DATABASEURL: process.env.LOCAL_DATABASEURL
 }
