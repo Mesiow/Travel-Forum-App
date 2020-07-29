@@ -50,6 +50,8 @@ router.post("/topics", middleware.isLoggedIn, (req, res) => {
         id: req.user._id,
         username: req.user.username
     }
+    //sanitize content of body (remove any html tags or scripts)
+    req.body.topic.body = req.sanitize(req.body.topic.body);
     var newPost = {
         title: req.body.topic.title,
         image: image_type,
@@ -109,6 +111,9 @@ router.get("/topics/:id/edit", middleware.checkPostOwnership, (req, res) => {
 
 //Update post - update a post after editing
 router.put("/topics/:id", middleware.checkPostOwnership, (req, res) => {
+    //sanitize body before updating
+    req.body.topic.body = req.sanitize(req.body.topic.body);
+    
     //find post by id and update it, then render it
     //this method takes the id of the topic, the new topic data to update the old (submitted by the form)
     Post.findByIdAndUpdate(req.params.id, req.body.topic, (err, foundpost) => {

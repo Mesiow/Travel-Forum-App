@@ -1,4 +1,5 @@
 const express = require("express");
+const expressSanitizer = require("express-sanitizer");
 const app = express();
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
@@ -20,6 +21,7 @@ app.set("view engine", "ejs");
 //set body parser and public dir
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + "/public"));
+app.use(expressSanitizer());
 app.use(methodOverride("_method")); //whenever we get a request with _method as a param
 //use whatever it is equal to as the method we want to use
 app.use(flash());
@@ -33,7 +35,7 @@ mongoose.set("useFindAndModify", false);
 //connect to travel_forum_app database
 var url = `mongodb+srv://Chris:${env.mongoDBAtlas_password}@cluster0-fzdbs.mongodb.net/travel_forum_app?retryWrites=true&w=majority`
             || env.LOCAL_DATABASEURL;
-mongoose.connect(url, {
+mongoose.connect(env.LOCAL_DATABASEURL, {
     useNewUrlParser: true,
     useCreateIndex: true
 })
