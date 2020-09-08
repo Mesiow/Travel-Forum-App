@@ -1,5 +1,5 @@
 # A CRUD Travel Forum Web Application
-Features:
+# Features
   - Sign Up
   - Log In
   - Create Posts
